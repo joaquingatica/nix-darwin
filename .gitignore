@@ -1,1 +1,6 @@
+### IDEs ###
 .idea
+
+### Remote Linux builder for macOS ###
+nixos.qcow2
+keys/builder*
