@@ -16,13 +16,13 @@
     forEachSystem = nixpkgs.lib.genAttrs supportedSystems;
     inherit (darwin.lib) darwinSystem;
 
+    linuxSystem = system: builtins.replaceStrings [ "darwin" ] [ "linux" ] system;
     # setup for remote linux build in macOS
     # to reconfigure the remote builder, see https://nixos.org/manual/nixpkgs/unstable/#sec-darwin-builder-reconfiguring
     darwin-builder = forEachSystem (system: let
       pkgs = nixpkgs.legacyPackages."${system}";
-      linuxSystem = builtins.replaceStrings [ "darwin" ] [ "linux" ] system;
     in nixpkgs.lib.nixosSystem {
-      system = linuxSystem;
+      system = linuxSystem system;
       modules = [
         "${nixpkgs}/nixos/modules/profiles/macos-builder.nix"
         {
@@ -46,7 +46,7 @@
             nix.distributedBuilds = true;
             nix.buildMachines = [{
               hostName = "ssh://builder@localhost";
-              system = linuxSystem;
+              system = linuxSystem system;
               maxJobs = 4; # should match `MAX_JOBS` set in `builders` in `/etc/nix/nix.conf`
               supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
             }];
