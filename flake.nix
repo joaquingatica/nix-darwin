@@ -35,7 +35,17 @@
       ];
     });
   in {
-    # setup for remote linux build in macOS
+    packages = forEachSystem (system: let
+      pkgs = nixpkgs.legacyPackages."${system}";
+    in {
+      default = pkgs.buildEnv {
+        name = "shared-env";
+        paths = with pkgs; [
+          # TODO: add package dependencies here
+        ];
+      };
+    });
+
     darwinConfigurations = {
       "anagram-mb16" = let
         system = "x86_64-darwin";
@@ -43,6 +53,7 @@
         inherit system;
         modules = [
           {
+            # setup for remote linux build in macOS
             nix.distributedBuilds = true;
             nix.buildMachines = [{
               hostName = "ssh://builder@localhost";
@@ -50,7 +61,6 @@
               maxJobs = 4; # should match `MAX_JOBS` set in `builders` in `/etc/nix/nix.conf`
               supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
             }];
-
             launchd.daemons.darwin-builder = {
               command = "${darwin-builder.${system}.config.system.build.macos-builder-installer}/bin/create-builder";
               serviceConfig = {
