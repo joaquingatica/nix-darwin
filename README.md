@@ -60,6 +60,7 @@ eval "$(direnv hook zsh)"
 * Check available Nix profiles: `nix profile list`
 * Upgrade Nix profile: `nix profile upgrade 3` (replace `3` with the profile number)
 * Apply changes to `nix-darwin` configuration: `darwin-rebuild switch --flake .`
+* Manually run linux builder: `nix run nixpkgs#darwin.linux-builder`
 
 ## Resources
 
