@@ -1,7 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-23.11-darwin";
-    darwin = {
+    nix-darwin = {
         url = "github:lnl7/nix-darwin/master";
         inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -9,12 +9,12 @@
 
   outputs = {
     self,
-    darwin,
+    nix-darwin,
     nixpkgs
   }: let
     supportedSystems = ["x86_64-darwin" "aarch64-darwin"];
     forEachSystem = nixpkgs.lib.genAttrs supportedSystems;
-    inherit (darwin.lib) darwinSystem;
+    inherit (nix-darwin.lib) darwinSystem;
 
     inferLinuxSystem = system: builtins.replaceStrings [ "darwin" ] [ "linux" ] system;
   in {
