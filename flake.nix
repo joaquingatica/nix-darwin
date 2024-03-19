@@ -30,23 +30,10 @@
     });
 
     darwinConfigurations = {
-      "Joaquins-MacBook-Pro" = let
+      "Joaquins-MacBook-Pro" = darwinSystem {
         system = "x86_64-darwin";
-      in darwinSystem {
-        inherit system;
         modules = [
-          {
-            services.nix-daemon.enable = true;
-            nix.settings.trusted-users = [ "root" "joaquin" ];
-
-            nix.linux-builder = {
-              enable = false;
-              maxJobs = 4;
-              config = {
-                virtualisation.cores = 4;
-              };
-            };
-          }
+          ./hosts/Joaquins-MacBook-Pro/default.nix
         ];
       };
     };
