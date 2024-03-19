@@ -39,10 +39,8 @@
             services.nix-daemon.enable = true;
             nix.settings.trusted-users = [ "root" "joaquin" ];
 
-            # setup for remote linux build in macOS
-            nix.distributedBuilds = true;
             nix.linux-builder = {
-              enable = true;
+              enable = false;
               maxJobs = 4;
               config = {
                 virtualisation.cores = 4;
