@@ -5,10 +5,15 @@
         url = "github:lnl7/nix-darwin/master";
         inputs.nixpkgs.follows = "nixpkgs";
     };
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs@{
     self,
+    home-manager,
     nix-darwin,
     nixpkgs
   }: let
@@ -41,6 +46,17 @@
         specialArgs = { inherit inputs; };
         modules = [
           ./hosts/Joaquins-MacBook-Pro-14/default.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              # users.joaquin = import ./home/joaquin/Joaquins-MacBook-Pro-14.nix;
+              extraSpecialArgs = { inherit inputs; };
+            };
+            # https://github.com/LnL7/nix-darwin/issues/682
+            users.users.joaquin.home = "/Users/joaquin";
+          }
         ];
       };
     };
