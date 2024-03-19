@@ -7,7 +7,7 @@
     };
   };
 
-  outputs = {
+  outputs = inputs@{
     self,
     nix-darwin,
     nixpkgs
@@ -38,6 +38,7 @@
       };
       "Joaquins-MacBook-Pro-14" = darwinSystem {
         system = "aarch64-darwin";
+        specialArgs = { inherit inputs; };
         modules = [
           ./hosts/Joaquins-MacBook-Pro-14/default.nix
         ];
