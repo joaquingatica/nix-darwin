@@ -36,6 +36,12 @@
           ./hosts/Joaquins-MacBook-Pro/default.nix
         ];
       };
+      "Joaquins-MacBook-Pro-14" = darwinSystem {
+        system = "aarch64-darwin";
+        modules = [
+          ./hosts/Joaquins-MacBook-Pro-14/default.nix
+        ];
+      };
     };
   };
 }
