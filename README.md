@@ -44,3 +44,4 @@ See [`Makefile`](./Makefile) for other commands.
 ## TODOs
 
 - [ ] Add pre-commit formatter for this repository
+- [ ] Maintain `~/.aws/config` from this repository
