@@ -62,7 +62,10 @@
   '';
 
   zshProfileExtra = ''
-    # TODO: add zsh profile
+    # prevent duplicate entries in $PATH
+    # $path array is tied to $PATH
+    typeset -U path PATH
+
     # AWS SAM Telemetry
     SAM_CLI_TELEMETRY=0
   '';
@@ -104,6 +107,14 @@ in {
           "terraform"
         ];
         theme = "clean";
+      };
+      shellAliases = {
+        # open github repository for current directory
+        ghrepo = "gh repo view -w";
+        # open github PR for current branch in directory repository
+        ghpr = "gh pr view -w";
+        # https://gist.github.com/dersam/0ec781e8fe552521945671870344147b
+        kraken = "open -na \"GitKraken\" --args -p \"$(git rev-parse --show-toplevel)\"";
       };
       syntaxHighlighting.enable = true;
       initExtra = zshInitExtra;
