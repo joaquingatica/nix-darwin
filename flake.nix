@@ -6,7 +6,7 @@
         inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -46,7 +46,7 @@
         specialArgs = { inherit inputs; };
         modules = [
           ./hosts/Joaquins-MacBook-Pro-14/default.nix
-          home-manager.nixosModules.home-manager
+          home-manager.darwinModules.home-manager
           {
             home-manager = {
               useGlobalPkgs = true;
