@@ -4,7 +4,8 @@
   ...
 }: let
   zshInitExtra = ''
-    # TODO: add zsh completions and initializations
+    # enable VI mode
+    source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
   '';
 
   zshProfileExtra = ''
