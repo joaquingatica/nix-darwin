@@ -71,13 +71,72 @@ in {
   # nix.package = pkgs.nix;
 
   system = {
+    activationScripts.postUserActivation.text = ''
+      # Following line should allow us to avoid a logout/login cycle
+      /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
+    '';
+
     # Set Git commit hash for darwin-version.
     configurationRevision = self.rev or self.dirtyRev or null;
 
+    # see options: https://github.com/LnL7/nix-darwin/tree/bcc8afd06e237df060c85bad6af7128e05fd61a3/modules/system/defaults
     defaults = {
+      ".GlobalPreferences" = {
+        "com.apple.mouse.scaling" = 3.0;
+      };
+      ActivityMonitor = {
+        SortColumn = "CPUUsage";
+        SortDirection = 0; # descending
+      };
+      dock = {
+        autohide = true;
+        largesize = 52;
+        magnification = true;
+        persistent-apps = [
+          "/Applications/Firefox.app"
+        ];
+        show-recents = false;
+        tilesize = 50;
+        wvous-bl-corner = 3; # Application Windows
+        wvous-br-corner = 3; # Application Windows
+        wvous-tl-corner = 12; # Notification Center
+        wvous-tr-corner = 12; # Notification Center
+      };
+      finder = {
+        AppleShowAllFiles = true;
+        AppleShowAllExtensions = true;
+        FXDefaultSearchScope = "SCcf";
+        FXPreferredViewStyle = "clmv"; # Column View
+        ShowPathbar = true;
+        ShowStatusBar = true;
+      };
+      magicmouse = {
+        MouseButtonMode = "TwoButton";
+      };
+      menuExtraClock = {
+        IsAnalog = false;
+        Show24Hour = true;
+        ShowAMPM = false;
+        ShowDate = 0;
+        ShowDayOfMonth = true;
+        ShowDayOfWeek = true;
+        ShowSeconds = false;
+      };
       NSGlobalDomain = {
+        AppleICUForce24HourTime = true;
+        AppleInterfaceStyleSwitchesAutomatically = true;
+        AppleMeasurementUnits = "Centimeters";
+        AppleMetricUnits = 1;
         AppleShowAllExtensions = true;
         AppleShowAllFiles = true;
+        AppleTemperatureUnit = "Celsius";
+        AppleWindowTabbingMode = "always";
+        "com.apple.trackpad.scaling" = 3.0;
+        NSNavPanelExpandedStateForSaveMode = true;
+        NSNavPanelExpandedStateForSaveMode2 = true;
+      };
+      SoftwareUpdate = {
+        AutomaticallyInstallMacOSUpdates = true;
       };
     };
 
