@@ -7,6 +7,21 @@ in {
     # pkgs.vim
   ];
 
+  homebrew = {
+    enable = true;
+    brews = [
+      # add brews here
+    ];
+    casks = [
+      # add casks here
+    ];
+    onActivation = {
+      autoUpdate = true;
+      # uncomment to remove packages not listed above
+      # cleanup = "uninstall";
+    };
+  };
+
   nix = {
     linux-builder = {
       enable = false;
