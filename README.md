@@ -51,8 +51,6 @@ Run `gpgconf --kill gpg-agent` to restart the GPG agent and apply the new config
 Follow the steps in [this guide](https://docs.github.com/en/authentication/managing-commit-signature-verification/about-commit-signature-verification)
 to set up commit signing and signature verification in Git and GitHub.
 
-Make sure the proper `programs.git.signing.key` is set in [`git.nix`](./home/joaquin/common/global/git.nix)
-
 ## Usage
 
 To apply changes to `nix-darwin` configuration run: `make switch`

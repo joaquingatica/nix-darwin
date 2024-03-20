@@ -8,11 +8,10 @@
       userName = "Joaquin Gatica";
       userEmail = "joaquingatica@gmail.com";
 
-      # TODO: enable GPG signing
-      # signing = {
-      #   key = "<key-here>";
-      #   signByDefault = true;
-      # };
+      signing = {
+        key = null; # let GnuPG decide what signing key to use depending on commit’s author
+        signByDefault = true;
+      };
 
       extraConfig = {
         color = {
