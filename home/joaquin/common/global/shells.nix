@@ -38,18 +38,17 @@ in {
         save = 100000;
         size = 100000;
       };
-      # oh-my-zsh = {
-      #   enable = true;
-      #   plugins = [
-      #     "aws"
-      #     "docker"
-      #     "docker-compose"
-      #     "git"
-      #     "rust"
-      #     "terraform"
-      #   ];
-      #   theme = "clean";
-      # };
+       oh-my-zsh = {
+         enable = true;
+         plugins = [
+           "aws"
+           "docker"
+           "docker-compose"
+           "git"
+           "terraform"
+         ];
+         theme = "clean";
+       };
       syntaxHighlighting.enable = true;
       initExtra = zshInitExtra;
       profileExtra = zshProfileExtra;
