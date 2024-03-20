@@ -30,6 +30,29 @@ This is to work around  a minor `gnupg` agent [issue that prints warnings if fol
 1. Clone this repository in the folder: `~/.config`
 2. In `~/.config/nix-darwin`, run `make install`
 
+### 4. Post installation
+
+#### 4.1. Ensure `~/.gnupg` permissions
+
+Run `gpg --list-secret-keys --keyid-format=long` and verify that no `unsafe permissions on homedir`
+warning is printed. If a warning is printed, run the following commands to fix the permissions:
+
+```shell
+find ~/.gnupg -type f -exec chmod 600 {} \; # Set 600 for files
+find ~/.gnupg -type d -exec chmod 700 {} \; # Set 700 for directories
+``` 
+
+#### 4.2. Restart GPG agent
+
+Run `gpgconf --kill gpg-agent` to restart the GPG agent and apply the new configurations.
+
+#### 4.3. Setup commit signing
+
+Follow the steps in [this guide](https://docs.github.com/en/authentication/managing-commit-signature-verification/about-commit-signature-verification)
+to set up commit signing and signature verification in Git and GitHub.
+
+Make sure the proper `programs.git.signing.key` is set in [`git.nix`](./home/joaquin/common/global/git.nix)
+
 ## Usage
 
 To apply changes to `nix-darwin` configuration run: `make switch`
