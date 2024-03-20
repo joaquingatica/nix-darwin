@@ -23,6 +23,18 @@ in {
   };
 
   nix = {
+    distributedBuilds = false;
+
+    gc = {
+      automatic = true;
+      interval = {
+        Weekday = 0;
+        Hour = 2;
+        Minute = 0;
+      };
+      options = "--delete-older-than 30d";
+    };
+
     linux-builder = {
       enable = false;
       maxJobs = 4;
@@ -32,6 +44,8 @@ in {
     };
 
     settings = {
+      # https://github.com/NixOS/nix/issues/7273
+      auto-optimise-store = pkgs.stdenv.isLinux;
       # Necessary for using flakes on this system.
       experimental-features = "nix-command flakes";
       trusted-users = [ "root" "joaquin" ];
@@ -46,8 +60,8 @@ in {
       enable = true;
       enableSSHSupport = true;
     };
-    # Create /etc/zshrc that loads the nix-darwin environment.
-    zsh.enable = true; # default shell on catalina
+    # enable this so nix-darwin creates a zshrc sourcing needed environment changes
+    zsh.enable = true;
   };
 
   # Auto upgrade nix package and the daemon service.
