@@ -93,13 +93,14 @@ in {
         largesize = 52;
         magnification = true;
         persistent-apps = [
-          "/Applications/Firefox.app"
+          # add apps pinned to the dock
+          # "/Applications/Firefox.app"
         ];
         show-recents = false;
         tilesize = 50;
-        wvous-bl-corner = 3; # Application Windows
+        wvous-bl-corner = 2; # Mission Contro
         wvous-br-corner = 3; # Application Windows
-        wvous-tl-corner = 12; # Notification Center
+        wvous-tl-corner = 1; # Disabled
         wvous-tr-corner = 12; # Notification Center
       };
       finder = {
