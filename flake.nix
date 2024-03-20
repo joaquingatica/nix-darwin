@@ -1,6 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-23.11-darwin";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-darwin = {
         url = "github:lnl7/nix-darwin/master";
         inputs.nixpkgs.follows = "nixpkgs";
@@ -20,10 +21,11 @@
 
   outputs = inputs@{
     self,
+    nixpkgs,
+    nixpkgs-unstable,
     home-manager,
     nix-darwin,
     nix-homebrew,
-    nixpkgs
   }: let
     supportedSystems = ["x86_64-darwin" "aarch64-darwin"];
     forEachSystem = nixpkgs.lib.genAttrs supportedSystems;
@@ -57,7 +59,6 @@
           home-manager.darwinModules.home-manager
           nix-homebrew.darwinModules.nix-homebrew
           {
-
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
@@ -72,6 +73,12 @@
               # with mutableTaps disabled, taps can no longer be added imperatively with `brew tap`.
               # mutableTaps = false;
             };
+            nixpkgs.config.allowUnfree = true;
+            nixpkgs.overlays = [
+              (prev: final: {
+                unstable = import nixpkgs-unstable { inherit (prev) system; };
+              })
+            ];
             # https://github.com/LnL7/nix-darwin/issues/682
             users.users.joaquin.home = "/Users/joaquin";
           }
