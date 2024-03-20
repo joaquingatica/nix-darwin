@@ -51,7 +51,7 @@
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              # users.joaquin = import ./home/joaquin/Joaquins-MacBook-Pro-14.nix;
+              users.joaquin = import ./home/joaquin/Joaquins-MacBook-Pro-14.nix;
               extraSpecialArgs = { inherit inputs; };
             };
             # https://github.com/LnL7/nix-darwin/issues/682

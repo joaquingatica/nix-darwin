@@ -7,6 +7,7 @@
 - [ ] Add `direnv` through this configuration instead of dependencies
 - [ ] Add `cachix` through this configuration instead of dependencies
 - [ ] Add other programs that were installed through homebrew
+- [ ] Add formatter for nix
 
 ## Setup Environment
 
