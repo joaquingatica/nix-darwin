@@ -28,13 +28,11 @@ echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
 
 Documentation: https://nix.dev/install-nix
 
-### 2. Setup `cachix`
+### 2. Create `~/.gnupg` folder
 
-Install `cachix` flake profile to speed up installations:
+If `~/.gnupg` folder doesn't exist, create it: `mkdir ~/.gnupg`.
 
-```shell
-nix profile install nixpkgs#cachix
-```
+This is to work around  a minor `gnupg` agent [issue that prints warnings if folder doesn't exist]( https://github.com/NixOS/nixpkgs/issues/29331#issuecomment-685282396).
 
 ### 3. Setup repository & `nix-darwin`
 

@@ -42,11 +42,9 @@ in {
   nixpkgs.hostPlatform = "aarch64-darwin";
 
   programs = {
-    direnv = {
+    gnupg.agent = {
       enable = true;
-      nix-direnv = {
-        enable = true;
-      };
+      enableSSHSupport = true;
     };
     # Create /etc/zshrc that loads the nix-darwin environment.
     zsh.enable = true; # default shell on catalina
