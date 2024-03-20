@@ -1,14 +1,5 @@
 # Joaquin's `nix-darwin` Configuration
 
-## TODOs
-
-- [ ] Add `home-manager`
-- [ ] Enable Flake support through `home-manager` instead of dependencies
-- [ ] Add `direnv` through this configuration instead of dependencies
-- [ ] Add `cachix` through this configuration instead of dependencies
-- [ ] Add other programs that were installed through homebrew
-- [ ] Add formatter for nix
-
 ## Setup Environment
 
 ### 0. Update configuration for new system
@@ -39,12 +30,17 @@ This is to work around  a minor `gnupg` agent [issue that prints warnings if fol
 1. Clone this repository in the folder: `~/.config`
 2. In `~/.config/nix-darwin`, run `make install`
 
-## Useful Commands
+## Usage
 
-* Apply changes to `nix-darwin` configuration: `make switch`
-* Manually run linux builder: `make run-builder`
+To apply changes to `nix-darwin` configuration run: `make switch`
+
+See [`Makefile`](./Makefile) for other commands.
 
 ## Resources
 
 - `nix-darwin` manual: https://daiderd.com/nix-darwin/manual/
 - Remote Linux builder for macOS: https://nixos.org/manual/nixpkgs/unstable/#sec-darwin-builder
+
+## TODOs
+
+- [ ] Add pre-commit formatter for this repository
