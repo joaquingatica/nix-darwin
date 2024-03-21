@@ -5,5 +5,7 @@
       docker
       docker-compose
       gnupg
+      nodejs
+      yarn
     ];
 }
