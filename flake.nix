@@ -51,12 +51,6 @@
     });
 
     darwinConfigurations = {
-      "Joaquins-MacBook-Pro" = darwinSystem {
-        system = "x86_64-darwin";
-        modules = [
-          ./hosts/Joaquins-MacBook-Pro/default.nix
-        ];
-      };
       "Joaquins-MacBook-Pro-14" = darwinSystem {
         system = "aarch64-darwin";
         specialArgs = { inherit inputs; };
