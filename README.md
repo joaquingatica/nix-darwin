@@ -79,8 +79,9 @@ encrypted with the specified public keys.
 
 ### Updating Secrets
 
-To update secrets, run `sops <path>/secrets.yaml` to open the secrets file in unencrypted edit mode,
-and just save after updating. For example, `sops home/joaquin/Joaquins-MacBook-Pro-14/secrets.yaml`.
+To update secrets, run `sops <path>` to open the secrets file in unencrypted edit mode,
+and just save after updating. Helper `make` commands were added for ease of use. For example,
+`make sops-secrets`.
 
 If the file doesn't exist, it will be created. Make sure that a valid path regex exists in the
 `.sops.yaml` file for the new file.

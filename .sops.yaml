@@ -6,7 +6,7 @@ creation_rules:
       - age:
           - *Joaquins-MacBook-Pro-14-joaquin
 
-  - path_regex: home/.*/secrets\.yaml$
+  - path_regex: home/.*/secrets/[^/]+\.(yaml|json|env|ini)$
     key_groups:
       - age:
           - *Joaquins-MacBook-Pro-14-joaquin
