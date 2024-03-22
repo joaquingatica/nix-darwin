@@ -39,8 +39,7 @@ Keep in mind to **not** set a passphrase for the key in order to be used from `h
 
 1. Clone this repository in the folder: `~/.config`
 2. In `~/.config/nix-darwin`, run `make install`
-3. Run `direnv allow` to allow `direnv` to load the environment
-4. Run `make switch` to apply the configuration after the initial setup
+3Run `make switch` to apply the configuration after the initial setup
 
 ### 4. Post installation
 
