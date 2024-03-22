@@ -36,56 +36,17 @@
     supportedSystems = ["x86_64-darwin" "aarch64-darwin"];
     forEachSystem = nixpkgs.lib.genAttrs supportedSystems;
     inherit (nix-darwin.lib) darwinSystem;
-
-    inferLinuxSystem = system: builtins.replaceStrings [ "darwin" ] [ "linux" ] system;
   in {
-    packages = forEachSystem (system: let
-      pkgs = nixpkgs.legacyPackages."${system}";
-    in {
-      default = pkgs.buildEnv {
-        name = "shared-env";
-        paths = with pkgs; [
-          # TODO: add package dependencies here
-        ];
-      };
-    });
-
     darwinConfigurations = {
       "ang-joaquin-mbp14" = darwinSystem {
         system = "aarch64-darwin";
         specialArgs = { inherit inputs; };
         modules = [
-          ./hosts/ang-joaquin-mbp14/default.nix
-          home-manager.darwinModules.home-manager
-          nix-homebrew.darwinModules.nix-homebrew
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              users.joaquin = import ./home/joaquin/ang-joaquin-mbp14.nix;
-              extraSpecialArgs = { inherit inputs; };
-              sharedModules = [
-                sops-nix.homeManagerModules.sops
-              ];
-            };
-            nix-homebrew = {
-              enable = true;
-              user = "joaquin";
-              # also install Homebrew under the default Intel prefix for Rosetta 2 (if Rosetta installed)
-              # enableRosetta = true;
-              # with mutableTaps disabled, taps can no longer be added imperatively with `brew tap`.
-              # mutableTaps = false;
-            };
-            nixpkgs.config.allowUnfree = true;
-            nixpkgs.overlays = [
-              (prev: final: {
-                unstable = import nixpkgs-unstable { inherit (prev) system; };
-              })
-            ];
-            # https://github.com/LnL7/nix-darwin/issues/682
-            users.users.joaquin.home = "/Users/joaquin";
-          }
-        ];
+          ./hosts/ang-joaquin-mbp14.nix
+        ]
+        ++ (import ./modules/home-manager.nix inputs)
+        ++ (import ./modules/nix-homebrew.nix inputs)
+        ++ (import ./modules/packages.nix inputs);
       };
     };
   };

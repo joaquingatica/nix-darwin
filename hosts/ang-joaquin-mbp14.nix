@@ -1,5 +1,5 @@
 { config, ... }: {
   imports = [
-    ./common/presets/darwin.nix
+    ./common/users/joaquin.nix
   ];
 }

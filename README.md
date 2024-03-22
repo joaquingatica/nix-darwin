@@ -69,6 +69,47 @@ To apply changes to `nix-darwin` configuration run: `make switch`
 
 See [`Makefile`](./Makefile) for other commands.
 
+## Directory Structure
+
+The directory structure and documentation is inspired and based of off the [Effect-TS/infra](https://github.com/Effect-TS/infra/blob/cfcb7a25f066da20ca572b5ebf64d2faa7f6f74e/README.md)
+repository.
+
+### Nix Darwin
+
+The directory structure of this project is optimized for sharing configuration as much as possible.
+
+The `./hosts` directory contains all systems that are managed by Nix Darwin. Each host has its own
+file/directory (with the same name as the machine's hostname).
+
+In addition, the `./hosts` directory contains a `./common` subdirectory. This directory contains
+configuration that can be shared across all hosts. Within the `./common` subdirectory, we can have
+the following:
+
+- `./common/global` -> global configuration that is shared between all hosts and presets
+- `./common/presets` -> presets that are applied to specific host types (i.e. `nixos`, `darwin`, `desktop`, etc.)
+- `./common/users` -> user-specific configuration that is shared between hosts
+
+#### Home Manager
+
+The `/home` directory contains per-user, per-host Home Manager configurations. The directory
+hierarchy corresponds to the user-specific Home Manager configurations for a particular host.
+
+```
+./home/<username>/<hostname>
+```
+
+In addition, the `./home` directory contains a `./common` subdirectory. This directory
+contains Home Manager configurations that can be shared across all hosts. Within the `./common`
+subdirectory, we have the following:
+
+- `./common/global` -> global configuration that is shared between all hosts
+- `./common/presets` -> presets that are applied to specific host types (i.e. `nixos`, `darwin`, `desktop`, etc.)
+
+#### Modules
+
+The `./modules` directory contains configuration to be used from the system configuration from
+the flake (i.e. `darwinSystem`, `linuxSystem`, etc.).
+
 ## Secret Management
 
 This project makes use of [Mozilla SOPS (Secrets OPerationS)](https://github.com/mozilla/sops)

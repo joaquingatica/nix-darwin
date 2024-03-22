@@ -1,19 +1,13 @@
-{pkgs, inputs, ...}: let
-  inherit (inputs) self;
-in {
+{ inputs, pkgs, ...}: {
+  imports = [
+    ../global
+  ];
+
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
-  environment = {
-    systemPackages = with pkgs; [
-      unstable.colima
-      sops
-      ssh-to-age
-    ];
-
-    variables = {
-      EDITOR = "vim";
-    };
-  };
+  environment.systemPackages = with pkgs; [
+    unstable.colima
+  ];
 
   homebrew = {
     enable = true;
@@ -33,26 +27,6 @@ in {
   nix = {
     distributedBuilds = false;
 
-    extraOptions = ''
-      plugin-files = ${pkgs.nix-plugins}/lib/nix/plugins
-      # keep-outputs = true
-      # keep-derivations = true
-    '';
-
-    # Decrypt at eval time - useful for NIX_NPM_TOKENS
-    # ref: https://elvishjerricco.github.io/2018/06/24/secure-declarative-key-management.html
-    envVars = builtins.fromJSON (builtins.extraBuiltins.decrypt "hosts/ang-joaquin-mbp14/secrets/nix-env-vars.json");
-
-    gc = {
-      automatic = true;
-      interval = {
-        Weekday = 0;
-        Hour = 2;
-        Minute = 0;
-      };
-      options = "--delete-older-than 30d";
-    };
-
     linux-builder = {
       enable = false;
       maxJobs = 4;
@@ -60,31 +34,9 @@ in {
         virtualisation.cores = 4;
       };
     };
-
-    settings = {
-      # https://github.com/NixOS/nix/issues/7273
-      auto-optimise-store = pkgs.stdenv.isLinux;
-      # Necessary for using flakes on this system.
-      experimental-features = "nix-command flakes";
-      trusted-users = [ "root" "joaquin" ];
-    };
-  };
-
-  # The platform the configuration will be used on.
-  nixpkgs.hostPlatform = "aarch64-darwin";
-
-  programs = {
-    gnupg.agent = {
-      enable = true;
-      enableSSHSupport = true;
-    };
-    # enable this so nix-darwin creates a zshrc sourcing needed environment changes
-    zsh.enable = true;
   };
 
   security.pam.enableSudoTouchIdAuth = true;
-
-  services.nix-daemon.enable = true;
 
   system = {
     activationScripts.postUserActivation.text = ''
@@ -93,7 +45,7 @@ in {
     '';
 
     # Set Git commit hash for darwin-version.
-    configurationRevision = self.rev or self.dirtyRev or null;
+    configurationRevision = inputs.self.rev or inputs.self.dirtyRev or null;
 
     # see options: https://github.com/LnL7/nix-darwin/tree/bcc8afd06e237df060c85bad6af7128e05fd61a3/modules/system/defaults
     defaults = {
