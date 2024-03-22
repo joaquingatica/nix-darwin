@@ -4,7 +4,7 @@ install:
 
 # rebuild/apply changes to darwin configuration
 switch:
-	darwin-rebuild switch --flake .
+	darwin-rebuild switch --option extra-builtins-file $$PWD/extra-builtins.nix --flake .
 
 # manually run linux builder
 run-builder:

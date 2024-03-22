@@ -2,6 +2,10 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-23.11-darwin";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    home-manager = {
+      url = "github:nix-community/home-manager/release-23.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-darwin = {
         url = "github:lnl7/nix-darwin/master";
         inputs.nixpkgs.follows = "nixpkgs";
@@ -13,9 +17,10 @@
         nixpkgs.follows = "nixpkgs";
       };
     };
-    home-manager = {
-      url = "github:nix-community/home-manager/release-23.11";
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs-stable.follows = "nixpkgs";
     };
   };
 
@@ -26,6 +31,7 @@
     home-manager,
     nix-darwin,
     nix-homebrew,
+    sops-nix
   }: let
     supportedSystems = ["x86_64-darwin" "aarch64-darwin"];
     forEachSystem = nixpkgs.lib.genAttrs supportedSystems;
@@ -62,8 +68,11 @@
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              users.joaquin = import ./home/joaquin/Joaquins-MacBook-Pro-14.nix;
+              users.joaquin = import ./home/joaquin/Joaquins-MacBook-Pro-14;
               extraSpecialArgs = { inherit inputs; };
+              sharedModules = [
+                sops-nix.homeManagerModules.sops
+              ];
             };
             nix-homebrew = {
               enable = true;

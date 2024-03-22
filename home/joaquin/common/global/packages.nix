@@ -7,5 +7,6 @@
       gnupg
       nodejs
       yarn
+      yq
     ];
 }

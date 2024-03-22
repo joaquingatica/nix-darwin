@@ -3,9 +3,17 @@
 in {
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
-  environment.systemPackages = with pkgs; [
-    unstable.colima
-  ];
+  environment = {
+    systemPackages = with pkgs; [
+      unstable.colima
+      sops
+      ssh-to-age
+    ];
+
+    variables = {
+      EDITOR = "vim";
+    };
+  };
 
   homebrew = {
     enable = true;
@@ -24,6 +32,16 @@ in {
 
   nix = {
     distributedBuilds = false;
+
+    extraOptions = ''
+      plugin-files = ${pkgs.nix-plugins}/lib/nix/plugins
+      # keep-outputs = true
+      # keep-derivations = true
+    '';
+
+    # Decrypt at eval time - useful for NIX_NPM_TOKENS
+    # ref: https://elvishjerricco.github.io/2018/06/24/secure-declarative-key-management.html
+    envVars = builtins.fromJSON (builtins.extraBuiltins.decrypt "hosts/Joaquins-MacBook-Pro-14/secrets/nix-env-vars.json");
 
     gc = {
       automatic = true;

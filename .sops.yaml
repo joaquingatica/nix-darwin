@@ -1,0 +1,12 @@
+keys:
+  - &Joaquins-MacBook-Pro-14-joaquin age1ffnr57wyhkt39u2pd29cl3semevlhcy52el8wmvts3wqzn26f38qwedryc
+creation_rules:
+  - path_regex: hosts/.*/secrets/[^/]+\.(yaml|json|env|ini)$
+    key_groups:
+      - age:
+          - *Joaquins-MacBook-Pro-14-joaquin
+
+  - path_regex: home/.*/secrets\.yaml$
+    key_groups:
+      - age:
+          - *Joaquins-MacBook-Pro-14-joaquin

@@ -10,14 +10,18 @@
   ];
 
   home = {
-    username = lib.mkDefault "joaquin";
     homeDirectory = lib.mkDefault "/home/${config.home.username}";
-    stateVersion = lib.mkDefault "23.11";
 
     sessionVariables = {
+      GRADLE_USER_HOME = "${config.xdg.configHome}/gradle";
       LANG = "en_US.UTF-8";
       LC_CTYPE = "en_US.UTF-8";
+      NPM_CONFIG_USERCONFIG = "${config.xdg.configHome}/npm/.npmrc";
     };
+
+    stateVersion = lib.mkDefault "23.11";
+
+    username = lib.mkDefault "joaquin";
   };
 
   programs = {
