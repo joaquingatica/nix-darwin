@@ -11,7 +11,7 @@ run-builder:
 	nix run nixpkgs#darwin.linux-builder
 
 sops-nix-env-vars:
-	sops hosts/ang-joaquin-mbp14/secrets/nix-env-vars.json
+	sops hosts/common/global/secrets/nix-env-vars.json
 
 sops-secrets:
 	sops home/joaquin/common/global/secrets/secrets.yaml

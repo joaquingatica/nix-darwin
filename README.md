@@ -136,7 +136,7 @@ To update secret files after making changes to the `.sops.yaml` file, run the sn
 
 ```bash
 find . -regex $(yq -r '[.creation_rules[] | "./" + .path_regex] | join("\\|")' "$(pwd)/.sops.yaml") | \
-xargs -i sops updatekeys -y {}
+xargs -I sops updatekeys -y {}
 ```
 
 ### Adding a Public Key
