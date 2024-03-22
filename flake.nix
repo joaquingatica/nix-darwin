@@ -51,18 +51,18 @@
     });
 
     darwinConfigurations = {
-      "Joaquins-MacBook-Pro-14" = darwinSystem {
+      "ang-joaquin-mbp14" = darwinSystem {
         system = "aarch64-darwin";
         specialArgs = { inherit inputs; };
         modules = [
-          ./hosts/Joaquins-MacBook-Pro-14/default.nix
+          ./hosts/ang-joaquin-mbp14/default.nix
           home-manager.darwinModules.home-manager
           nix-homebrew.darwinModules.nix-homebrew
           {
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              users.joaquin = import ./home/joaquin/Joaquins-MacBook-Pro-14;
+              users.joaquin = import ./home/joaquin/ang-joaquin-mbp14.nix;
               extraSpecialArgs = { inherit inputs; };
               sharedModules = [
                 sops-nix.homeManagerModules.sops

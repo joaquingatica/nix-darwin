@@ -41,7 +41,7 @@ in {
 
     # Decrypt at eval time - useful for NIX_NPM_TOKENS
     # ref: https://elvishjerricco.github.io/2018/06/24/secure-declarative-key-management.html
-    envVars = builtins.fromJSON (builtins.extraBuiltins.decrypt "hosts/Joaquins-MacBook-Pro-14/secrets/nix-env-vars.json");
+    envVars = builtins.fromJSON (builtins.extraBuiltins.decrypt "hosts/ang-joaquin-mbp14/secrets/nix-env-vars.json");
 
     gc = {
       automatic = true;
