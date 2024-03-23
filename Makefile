@@ -6,6 +6,9 @@ install:
 switch:
 	darwin-rebuild switch --option extra-builtins-file $$PWD/extra-builtins.nix --flake .
 
+fmt:
+	pre-commit run --all-files
+
 # manually run linux builder
 run-builder:
 	nix run nixpkgs#darwin.linux-builder

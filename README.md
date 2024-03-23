@@ -76,7 +76,11 @@ In IntelliJ or other JetBrains IDEs, update the following settings:
 
 ## Usage
 
-To apply changes to `nix-darwin` configuration run: `make switch`
+To **apply changes** to `nix-darwin` configuration run: `make switch`.
+
+To **format** the projects source code run: `make fmt`.
+
+To **edit secrets** run the `make sops-*` commands provided in [`Makefile`](./Makefile).
 
 See [`Makefile`](./Makefile) for other commands.
 
