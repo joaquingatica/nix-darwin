@@ -2,6 +2,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-23.11-darwin";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    flake-utils.url = "github:numtide/flake-utils";
     home-manager = {
       url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -13,7 +14,15 @@
     nix-homebrew = {
       url = "github:zhaofengli-wip/nix-homebrew";
       inputs = {
+        flake-utils.follows = "flake-utils";
         nix-darwin.follows = "nix-darwin";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+    pre-commit-hooks = {
+      url = "github:cachix/pre-commit-hooks.nix";
+      inputs = {
+        flake-utils.follows = "flake-utils";
         nixpkgs.follows = "nixpkgs";
       };
     };
@@ -22,32 +31,33 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.nixpkgs-stable.follows = "nixpkgs";
     };
-    treefmt-nix = {
-      url = "github:numtide/treefmt-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = inputs @ {
     self,
     nixpkgs,
     nixpkgs-unstable,
+    flake-utils,
     home-manager,
     nix-darwin,
     nix-homebrew,
+    pre-commit-hooks,
     sops-nix,
-    treefmt-nix,
   }: let
     supportedSystems = ["x86_64-darwin" "aarch64-darwin"];
     eachSystem = f: nixpkgs.lib.genAttrs supportedSystems (system: f nixpkgs.legacyPackages.${system});
-    treefmtEval = eachSystem (pkgs: treefmt-nix.lib.evalModule pkgs ./treefmt.nix);
   in {
-    # for `nix fmt`
-    formatter = eachSystem (pkgs: treefmtEval.${pkgs.system}.config.build.wrapper);
-
     # for `nix flake check`
     checks = eachSystem (pkgs: {
-      formatting = treefmtEval.${pkgs.system}.config.build.check self;
+      pre-commit-check = pre-commit-hooks.lib.${pkgs.system}.run {
+        src = ./.;
+        hooks = {
+          # *.nix files
+          alejandra.enable = true;
+          # *.{json,md,yaml} files
+          prettier.enable = true;
+        };
+      };
     });
 
     darwinConfigurations = {
@@ -63,5 +73,11 @@
           ++ (import ./modules/packages.nix inputs);
       };
     };
+
+    devShell = eachSystem (pkgs:
+      nixpkgs.legacyPackages.${pkgs.system}.mkShell {
+        inherit (self.checks.${pkgs.system}.pre-commit-check) shellHook;
+        buildInputs = self.checks.${pkgs.system}.pre-commit-check.enabledPackages;
+      });
   };
 }
