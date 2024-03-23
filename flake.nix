@@ -7,8 +7,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-darwin = {
-        url = "github:lnl7/nix-darwin/master";
-        inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:lnl7/nix-darwin/master";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-homebrew = {
       url = "github:zhaofengli-wip/nix-homebrew";
@@ -28,7 +28,7 @@
     };
   };
 
-  outputs = inputs@{
+  outputs = inputs @ {
     self,
     nixpkgs,
     nixpkgs-unstable,
@@ -36,7 +36,7 @@
     nix-darwin,
     nix-homebrew,
     sops-nix,
-    treefmt-nix
+    treefmt-nix,
   }: let
     supportedSystems = ["x86_64-darwin" "aarch64-darwin"];
     eachSystem = f: nixpkgs.lib.genAttrs supportedSystems (system: f nixpkgs.legacyPackages.${system});
@@ -53,13 +53,14 @@
     darwinConfigurations = {
       "ang-joaquin-mbp14" = nix-darwin.lib.darwinSystem {
         system = "aarch64-darwin";
-        specialArgs = { inherit inputs; };
-        modules = [
-          ./hosts/ang-joaquin-mbp14.nix
-        ]
-        ++ (import ./modules/home-manager.nix inputs)
-        ++ (import ./modules/nix-homebrew.nix inputs)
-        ++ (import ./modules/packages.nix inputs);
+        specialArgs = {inherit inputs;};
+        modules =
+          [
+            ./hosts/ang-joaquin-mbp14.nix
+          ]
+          ++ (import ./modules/home-manager.nix inputs)
+          ++ (import ./modules/nix-homebrew.nix inputs)
+          ++ (import ./modules/packages.nix inputs);
       };
     };
   };

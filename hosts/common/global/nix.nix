@@ -21,7 +21,7 @@
       auto-optimise-store = pkgs.stdenv.isLinux;
       # Necessary for using flakes on this system.
       experimental-features = "nix-command flakes";
-      trusted-users = [ "root" "joaquin" ];
+      trusted-users = ["root" "joaquin"];
     };
   };
 

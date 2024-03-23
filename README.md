@@ -12,6 +12,7 @@
 1. Run `curl -L https://nixos.org/nix/install | sh` to install Nix.
 2. In a new terminal, verify installation with `nix --version`
 3. Enable flake support:
+
 ```shell
 mkdir -p ~/.config/nix
 echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
@@ -25,7 +26,7 @@ Documentation: https://nix.dev/install-nix
 
 If `~/.gnupg` folder doesn't exist, create it: `mkdir ~/.gnupg`.
 
-This is to work around  a minor `gnupg` agent [issue that prints warnings if folder doesn't exist](https://github.com/NixOS/nixpkgs/issues/29331#issuecomment-685282396).
+This is to work around a minor `gnupg` agent [issue that prints warnings if folder doesn't exist](https://github.com/NixOS/nixpkgs/issues/29331#issuecomment-685282396).
 
 ### 2.2. Setup encryption keys
 
@@ -39,7 +40,7 @@ Keep in mind to **not** set a passphrase for the key in order to be used from `h
 
 1. Clone this repository in the folder: `~/.config`
 2. In `~/.config/nix-darwin`, run `make install`
-3Run `make switch` to apply the configuration after the initial setup
+   3Run `make switch` to apply the configuration after the initial setup
 
 ### 4. Post installation
 
@@ -51,7 +52,7 @@ warning is printed. If a warning is printed, run the following commands to fix t
 ```shell
 find ~/.gnupg -type f -exec chmod 600 {} \; # Set 600 for files
 find ~/.gnupg -type d -exec chmod 700 {} \; # Set 700 for directories
-``` 
+```
 
 #### 4.2. Restart GPG agent
 
@@ -65,6 +66,7 @@ to set up commit signing and signature verification in Git and GitHub.
 #### 4.4. Other caveats
 
 In IntelliJ or other JetBrains IDEs, update the following settings:
+
 - `Build, Execution, Deployment > Build Tools > Gradle` enter `/Users/joaquin/.config/gradle`
   in the `Gradle user home` field
 - `Build, Execution, Deployment > Docker` select `Colima` option

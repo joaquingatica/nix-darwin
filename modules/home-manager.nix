@@ -1,11 +1,15 @@
-inputs@{ home-manager, sops-nix, ... }: [
+inputs @ {
+  home-manager,
+  sops-nix,
+  ...
+}: [
   home-manager.darwinModules.home-manager
   {
     home-manager = {
       useGlobalPkgs = true;
       useUserPackages = true;
       users.joaquin = import ../home/joaquin/ang-joaquin-mbp14.nix;
-      extraSpecialArgs = { inherit inputs; };
+      extraSpecialArgs = {inherit inputs;};
       sharedModules = [
         sops-nix.homeManagerModules.sops
       ];

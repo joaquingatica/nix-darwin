@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   # used to find the project root
   projectRootFile = "flake.nix";
   programs = {
