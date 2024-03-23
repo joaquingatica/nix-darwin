@@ -62,6 +62,15 @@ Run `gpgconf --kill gpg-agent` to restart the GPG agent and apply the new config
 Follow the steps in [this guide](https://docs.github.com/en/authentication/managing-commit-signature-verification/about-commit-signature-verification)
 to set up commit signing and signature verification in Git and GitHub.
 
+#### 4.4. Other caveats
+
+In IntelliJ or other JetBrains IDEs, update the following settings:
+- `Build, Execution, Deployment > Build Tools > Gradle` enter `/Users/joaquin/.config/gradle`
+  in the `Gradle user home` field
+- `Build, Execution, Deployment > Docker` select `Colima` option
+- `Build, Execution, Deployment > Docker > Tools` enter `/etc/profiles/per-user/joaquin/bin/docker`
+  in both `Docker executable` and `Docker Compose executable` fields
+
 ## Usage
 
 To apply changes to `nix-darwin` configuration run: `make switch`
