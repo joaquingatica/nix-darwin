@@ -26,7 +26,7 @@ Documentation: https://nix.dev/install-nix
 
 If `~/.gnupg` folder doesn't exist, create it: `mkdir ~/.gnupg`.
 
-This is to work around a minor `gnupg` agent [issue that prints warnings if folder doesn't exist](https://github.com/NixOS/nixpkgs/issues/29331#issuecomment-685282396).
+This is to work around a minor `gnupg` agent issue that [prints warnings if folder doesn't exist](https://github.com/NixOS/nixpkgs/issues/29331#issuecomment-685282396).
 
 ### 2.2. Setup encryption keys
 
