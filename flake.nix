@@ -22,6 +22,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.nixpkgs-stable.follows = "nixpkgs";
     };
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs@{
@@ -31,14 +35,23 @@
     home-manager,
     nix-darwin,
     nix-homebrew,
-    sops-nix
+    sops-nix,
+    treefmt-nix
   }: let
     supportedSystems = ["x86_64-darwin" "aarch64-darwin"];
-    forEachSystem = nixpkgs.lib.genAttrs supportedSystems;
-    inherit (nix-darwin.lib) darwinSystem;
+    eachSystem = f: nixpkgs.lib.genAttrs supportedSystems (system: f nixpkgs.legacyPackages.${system});
+    treefmtEval = eachSystem (pkgs: treefmt-nix.lib.evalModule pkgs ./treefmt.nix);
   in {
+    # for `nix fmt`
+    formatter = eachSystem (pkgs: treefmtEval.${pkgs.system}.config.build.wrapper);
+
+    # for `nix flake check`
+    checks = eachSystem (pkgs: {
+      formatting = treefmtEval.${pkgs.system}.config.build.check self;
+    });
+
     darwinConfigurations = {
-      "ang-joaquin-mbp14" = darwinSystem {
+      "ang-joaquin-mbp14" = nix-darwin.lib.darwinSystem {
         system = "aarch64-darwin";
         specialArgs = { inherit inputs; };
         modules = [
