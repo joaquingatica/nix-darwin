@@ -66,21 +66,21 @@ to set up commit signing and signature verification in Git and GitHub.
 
 #### 4.4. Other caveats
 
-In IntelliJ or other JetBrains IDEs, update the following settings:
+##### IntelliJ & JetBrains IDEs
 
-- `Build, Execution, Deployment > Build Tools > Gradle` enter `/Users/joaquin/.config/gradle`
-  in the `Gradle user home` field
-- `Build, Execution, Deployment > Docker` select `Colima` option
-- `Build, Execution, Deployment > Docker > Tools` enter `/etc/profiles/per-user/joaquin/bin/docker`
-  in both `Docker executable` and `Docker Compose executable` fields
+Update the following settings:
+
+- `Build, Execution, Deployment`
+  - `Build Tools > Gradle` -> in `Gradle user home` enter `/Users/joaquin/.config/gradle`
+  - `Docker` -> select `Colima` option
+  - `Docker > Tools` -> in `Docker executable` and `Docker Compose executable` enter
+    `/etc/profiles/per-user/joaquin/bin/docker`
 
 ## Usage
 
-To **apply changes** to `nix-darwin` configuration run: `make switch`.
-
-To **format** the projects source code run: `make fmt`.
-
-To **edit secrets** run the `make sops-*` commands provided in [`Makefile`](./Makefile).
+- **Apply changes** from configuration: `make switch`.
+- **Format** the project's source code: `make fmt`.
+- **Edit secrets**: `make sops-*` commands provided in [`Makefile`](./Makefile).
 
 See [`Makefile`](./Makefile) for other commands.
 
