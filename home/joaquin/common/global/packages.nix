@@ -6,6 +6,7 @@
       docker-compose
       gnupg
       nodejs
+      terraform
       yarn
       yq
     ];
