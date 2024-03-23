@@ -5,6 +5,7 @@
     docker-compose
     gnupg
     nodejs
+    pre-commit
     terraform
     yarn
     yq
