@@ -5,6 +5,7 @@
     docker-compose
     gnupg
     nodejs
+    nodePackages.gulp-cli
     pre-commit
     terraform
     yarn
