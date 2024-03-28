@@ -1,3 +1,5 @@
+.PHONY: install switch fmt run-builder sops-nix-env-vars sops-secrets sops-awscli
+
 # install nix-darwin
 install:
 	nix run nix-darwin -- switch --flake .
