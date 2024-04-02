@@ -4,6 +4,7 @@
     docker
     docker-compose
     gnupg
+    grpcurl
     nodejs
     nodePackages.gulp-cli
     pre-commit
