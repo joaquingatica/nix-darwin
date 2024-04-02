@@ -7,6 +7,18 @@
       url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    homebrew-bundle = {
+      url = "github:homebrew/homebrew-bundle";
+      flake = false;
+    };
+    homebrew-core = {
+      url = "github:homebrew/homebrew-core";
+      flake = false;
+    };
+    homebrew-cask = {
+      url = "github:homebrew/homebrew-cask";
+      flake = false;
+    };
     nix-darwin = {
       url = "github:lnl7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -39,6 +51,9 @@
     nixpkgs-unstable,
     flake-utils,
     home-manager,
+    homebrew-bundle,
+    homebrew-cask,
+    homebrew-core,
     nix-darwin,
     nix-homebrew,
     pre-commit-hooks,
