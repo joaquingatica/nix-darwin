@@ -73,8 +73,8 @@ Update the following settings:
 - `Build, Execution, Deployment`
   - `Build Tools > Gradle` -> in `Gradle user home` enter `/Users/joaquin/.config/gradle`
   - `Docker` -> select `Colima` option
-  - `Docker > Tools` -> in `Docker executable` and `Docker Compose executable` enter
-    `/etc/profiles/per-user/joaquin/bin/docker`
+  - `Docker > Tools` -> in `Docker executable` and `Docker Compose executable` enter the
+    output of `which docker` (likely `/etc/profiles/per-user/joaquin/bin/docker`)
 
 ## Usage
 
