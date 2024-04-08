@@ -16,7 +16,7 @@
   homebrew = {
     enable = true;
     brews = [
-      # add brews here
+      "grpcui"
     ];
     casks = [
       # add casks here

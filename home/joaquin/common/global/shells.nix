@@ -59,6 +59,9 @@
     aws_sso_dfh() {
       aws sso login --sso-session dfhsso
     }
+
+    # make sure `brew` and installed brews are available
+    eval "$(brew shellenv)"
   '';
 
   zshProfileExtra = ''
