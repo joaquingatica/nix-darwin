@@ -7,6 +7,7 @@
     grpcurl
     nodejs
     nodePackages.gulp-cli
+    nodePackages.vercel
     pre-commit
     terraform
     yarn
