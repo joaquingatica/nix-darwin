@@ -17,6 +17,7 @@
     enable = true;
     brews = [
       "grpcui"
+      "spaceship"
     ];
     casks = [
       # add casks here

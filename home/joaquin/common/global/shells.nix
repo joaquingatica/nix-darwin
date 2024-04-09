@@ -62,6 +62,9 @@
 
     # make sure `brew` and installed brews are available
     eval "$(brew shellenv)"
+
+    # spaceship prompt
+    source $(brew --prefix)/opt/spaceship/spaceship.zsh
   '';
 
   zshProfileExtra = ''
