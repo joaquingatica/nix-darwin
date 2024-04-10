@@ -20,6 +20,10 @@
       NPM_CONFIG_USERCONFIG = "${config.xdg.configHome}/npm/.npmrc";
     };
 
+    sessionPath = [
+      "$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
+    ];
+
     stateVersion = lib.mkDefault "23.11";
 
     username = lib.mkDefault "joaquin";
