@@ -17,7 +17,6 @@
     enable = true;
     brews = [
       "grpcui"
-      # "spaceship"
       "powerlevel10k"
     ];
     casks = [

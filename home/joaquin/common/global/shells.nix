@@ -63,9 +63,6 @@
     # make sure `brew` and installed brews are available
     eval "$(brew shellenv)"
 
-    # spaceship prompt
-    # source $(brew --prefix)/opt/spaceship/spaceship.zsh
-
     # powerlevel10k theme
     source $(brew --prefix)/share/powerlevel10k/powerlevel10k.zsh-theme
     # comment on new hosts before running `p10k configure`, uncomment after
