@@ -9,6 +9,7 @@
     nodePackages.gulp-cli
     nodePackages.vercel
     pre-commit
+    python3
     terraform
     yarn
     yq
