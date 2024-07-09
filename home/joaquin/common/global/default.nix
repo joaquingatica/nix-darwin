@@ -24,7 +24,7 @@
       "$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
     ];
 
-    stateVersion = lib.mkDefault "23.11";
+    stateVersion = lib.mkDefault "24.05";
 
     username = lib.mkDefault "joaquin";
   };
