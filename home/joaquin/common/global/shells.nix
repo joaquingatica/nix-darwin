@@ -92,7 +92,7 @@ in {
     };
     zsh = {
       enable = true;
-      enableAutosuggestions = true;
+      autosuggestion.enable = true;
       enableCompletion = true;
       dotDir = builtins.replaceStrings ["${config.home.homeDirectory}"] [""] "${config.xdg.configHome}/zsh";
       history = {
