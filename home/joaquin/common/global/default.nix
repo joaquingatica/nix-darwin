@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: {
   imports = [
@@ -14,6 +15,7 @@
     sessionVariables = {
       AWS_CONFIG_FILE = "${config.xdg.configHome}/aws/config";
       AWS_SHARED_CREDENTIALS_FILE = "${config.xdg.configHome}/aws/credentials";
+      EDITOR = "code";
       GRADLE_USER_HOME = "${config.xdg.configHome}/gradle";
       LANG = "en_US.UTF-8";
       LC_CTYPE = "en_US.UTF-8";
@@ -32,6 +34,12 @@
   programs = {
     home-manager = {
       enable = true;
+    };
+    vscode = {
+      enable = true;
+      extensions = with pkgs.vscode-extensions; [
+        # dracula-theme.theme-dracula
+      ];
     };
   };
 
