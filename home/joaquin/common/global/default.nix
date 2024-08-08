@@ -15,7 +15,7 @@
     sessionVariables = {
       AWS_CONFIG_FILE = "${config.xdg.configHome}/aws/config";
       AWS_SHARED_CREDENTIALS_FILE = "${config.xdg.configHome}/aws/credentials";
-      EDITOR = "code";
+      EDITOR = "code -w";
       GRADLE_USER_HOME = "${config.xdg.configHome}/gradle";
       LANG = "en_US.UTF-8";
       LC_CTYPE = "en_US.UTF-8";
