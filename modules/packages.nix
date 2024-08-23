@@ -1,6 +1,7 @@
 {
   nixpkgs,
   nixpkgs-unstable,
+  rust-overlay,
   ...
 }: [
   {
@@ -9,6 +10,7 @@
       (prev: final: {
         unstable = import nixpkgs-unstable {inherit (prev) system;};
       })
+      rust-overlay.overlays.default
     ];
   }
 ]
