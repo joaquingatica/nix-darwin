@@ -171,8 +171,3 @@ and then re-encrypt the secret files (see [Updating Secrets Configuration](#upda
 
 - `nix-darwin` manual: https://daiderd.com/nix-darwin/manual/
 - Remote Linux builder for macOS: https://nixos.org/manual/nixpkgs/unstable/#sec-darwin-builder
-
-## TODOs
-
-- [ ] Add pre-commit formatter for this repository
-- [ ] Maintain `~/.aws/config` from this repository
