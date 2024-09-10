@@ -20,7 +20,7 @@
       "powerlevel10k"
     ];
     casks = [
-      # add casks here
+      "gitkraken"
     ];
     onActivation = {
       autoUpdate = true;
