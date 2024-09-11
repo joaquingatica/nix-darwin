@@ -20,12 +20,12 @@
       "powerlevel10k"
     ];
     casks = [
-      "gitkraken"
+      # add casks here
     ];
     onActivation = {
       autoUpdate = true;
-      # uncomment to remove packages not listed above
-      # cleanup = "uninstall";
+      # remove packages not listed above
+      cleanup = "uninstall";
     };
   };
 
