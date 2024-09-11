@@ -19,6 +19,7 @@
       url = "github:homebrew/homebrew-cask";
       flake = false;
     };
+    mac-app-util.url = "github:hraban/mac-app-util";
     nix-darwin = {
       url = "github:lnl7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -62,6 +63,7 @@
     homebrew-bundle,
     homebrew-cask,
     homebrew-core,
+    mac-app-util,
     nix-darwin,
     nix-homebrew,
     pre-commit-hooks,
