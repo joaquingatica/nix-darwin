@@ -24,6 +24,9 @@
 
     sessionPath = [
       "$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
+      # workaround for missing username in PATH for some GUI apps such
+      # as GitKraken, using invalid path "/etc/profiles/per-user//bin"
+      "/etc/profiles/per-user/${config.home.username}/bin"
     ];
 
     stateVersion = lib.mkDefault "24.05";
