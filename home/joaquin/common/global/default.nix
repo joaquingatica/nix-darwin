@@ -29,6 +29,7 @@
       "/etc/profiles/per-user/${config.home.username}/bin"
     ];
 
+    # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
     stateVersion = lib.mkDefault "24.05";
 
     username = lib.mkDefault "joaquin";
