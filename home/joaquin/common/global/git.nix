@@ -18,6 +18,10 @@
           ui = true;
         };
 
+        diff = {
+          external = "difft";
+        };
+
         github = {
           user = "joaquingatica";
         };

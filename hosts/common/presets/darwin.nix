@@ -16,6 +16,7 @@
   homebrew = {
     enable = true;
     brews = [
+      "difftastic"
       "grpcui"
       "powerlevel10k"
     ];
